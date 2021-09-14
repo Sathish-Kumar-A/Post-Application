@@ -1,0 +1,8 @@
+.posts{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.cardBox{
+    margin: 7px;
+}
