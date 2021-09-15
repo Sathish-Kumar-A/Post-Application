@@ -1,17 +1,18 @@
 .loginBox{
-    height:100vh;
+    height:80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 .loginContainer{
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
     align-items: center;
     padding: 20px;
     border:1px solid rgb(160, 158, 158);
     border-radius: 10px;
+    width:500px;
 }
 .loginLabel{
     font-weight: bold;
@@ -20,9 +21,20 @@
 .inputBox{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-flow: row wrap;
 }
 .loginBtn{
     width:100px;
 }
+
+@media screen and ( max-width:411px) {
+    .loginContainer{
+        width:390px;
+    }
+}
+@media screen and (max-width:360px) {
+    .loginContainer{
+        width:300px;
+    }
+}
+
