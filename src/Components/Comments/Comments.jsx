@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react'
+import { NavLink } from 'react-router-dom';
 import { CommentApi } from '../../API/Api';
+import Header from '../Header/Header';
 
 export default function Comments() {
     const [comments,setcomments]=useState([]);
@@ -37,7 +39,8 @@ export default function Comments() {
     
 
     return (
-        comments.length ? (
+        <div>
+        {comments.length ? (
             <>
             <h3 className="commentHeadTitle text-center">Comments</h3>
             <div className="commentsSection container">
@@ -51,7 +54,8 @@ export default function Comments() {
                     );
                 })}
 
-            <button className="btn btn-warning text-white text-center" onClick={()=>setuser(true)}>Add Comment</button>
+            <button className="btn btn-warning text-white text-center my-3" onClick={()=>setuser(true)}>Add Comment</button>
+            <NavLink to="/"><button className="btn btn-secondary mx-3 my-3">Home</button></NavLink>
 
             {user ? (
                 <form className="text-center col-6 mx-5 my-5" onSubmit={(event)=>handleSubmit(event)}>
@@ -61,6 +65,7 @@ export default function Comments() {
             ):null}
 
             </div></>
-        ):<></>
+        ):<></>}
+        </div>
     )
 }

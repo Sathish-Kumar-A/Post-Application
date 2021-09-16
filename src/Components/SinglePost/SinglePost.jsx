@@ -3,6 +3,7 @@ import "./singlePost.css";
 import { useState,useEffect } from 'react';
 import { Api, UserApi } from '../../API/Api';
 import Comments from '../Comments/Comments';
+import Header from '../Header/Header';
 
 export default function SinglePost() {
     const [users,setusers]=useState({});
@@ -19,10 +20,11 @@ export default function SinglePost() {
     useEffect(async()=>{
         setpost(await Api(postId))
     },[])
-    console.log(post)
 
     return (
-        users && post ? 
+        <div>
+            <Header />
+        {users && post ? 
             (<div className="singlePost">
                 <div>
                 <div className="userPhoto text-center my-4">
@@ -47,7 +49,8 @@ export default function SinglePost() {
                 <Comments />
             </div>
 
-        ):<>Loading...</>
+        ):<>Loading...</>}
+        </div>
         
     )
 }

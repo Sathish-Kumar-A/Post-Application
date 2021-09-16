@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React,{useState} from 'react';
+import Header from '../Header/Header';
 import "./newPost.css";
 
 export default function Newpost() {
@@ -40,6 +41,8 @@ export default function Newpost() {
     }
 
     return (
+        <div>
+        <Header />
         <form onSubmit={(event)=>handleSubmit(event)}>
         <div className="userBox mx-5 mt-5">
 
@@ -70,5 +73,6 @@ export default function Newpost() {
 
         </div>
         </form>
+        </div>
     )
 }

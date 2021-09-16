@@ -3,19 +3,20 @@ import { useState,useEffect } from 'react'
 import { Api } from '../../API/Api';
 import "./home.css"
 import { NavLink } from 'react-router-dom';
+import Header from '../Header/Header';
 
 export default function Home() {
     const [posts,setposts]=useState([]);
+    const user=window.localStorage.getItem("userLogin");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async()=>{
         const fetchedData=await Api();
         var res=fetchedData.map((data)=>{
-            return data={...data,btn:"UpVote",class:"btn btn-success mx-3"}
+            return data={...data,btn:"UpVote",class:"btn btn-success mx-3",count:0}
         })
         setposts(res);
     },[]);
-    console.log(posts);
 
 
     const btnChange=(id)=>{
@@ -23,31 +24,49 @@ export default function Home() {
            const res =posts.map((post,index)=>{
                 if(id===index){
                     post.btn="UnVote";
-                    post.class="btn btn-danger mx-3"
+                    post.class="btn btn-danger mx-3";
+                    post.count+=1;
                     return post;
                 }
                 else{
                     return post
                 }
            })
+           sort(res);
            setposts(res);
         }
         else{
             const res =posts.map((post,index)=>{
                 if(id===index){
                     post.btn="UpVote";
-                    post.class="btn btn-success mx-3"
+                    post.class="btn btn-success mx-3";
+                    post.count-=1;
                     return post;
                 }
                 else{
                     return post
                 }
            })
+           sort(res)
            setposts(res);
         }
     }
 
-    
+
+    function sort(posts){
+        for(var x=1;x<posts.length;x++){
+            let key=posts[x].count;
+            let ans=posts[x];
+            let y=x-1;
+
+            while(y>=0 && posts[y].count<key){
+
+                posts[y+1]=posts[y];
+                y-=1;
+            }
+            posts[y+1]=ans;
+        }
+    }
 
     const sendPostId=(id,userId)=>{
         window.localStorage.setItem("postId",id);
@@ -55,7 +74,10 @@ export default function Home() {
     }
 
     return (
-        posts.length ? 
+        <div>
+        <Header />
+        {posts.length ? 
+
             <div className="posts">
                 {posts.map((post,index)=>{
                     let time;
@@ -71,15 +93,23 @@ export default function Home() {
                             <div className="card-body">
                                 <h5 className="card-title" onClick={()=>sendPostId(post.id,post.userId)}><NavLink to="/post" style={{textDecoration:"none"}}>{post.title}</NavLink></h5>
                                 <p className="card-text">{post.body}</p>
-
-                                <button className={post.class} onClick={()=>btnChange(index)}>{post.btn}</button>
-                                <NavLink to="/comments" className="btn btn-primary">View Comments</NavLink>
+                                <span class="badge bg-info text-light">{post.count}</span>
+                                {user==="true" ? <button className={post.class} onClick={()=>btnChange(index)}>{post.btn}</button>:<span></span>}
+                                
+                                <NavLink to="/comments" className="btn btn-primary my-3 mx-2">View Comments</NavLink>
                             </div>
                         </div>
                     
                     );
                 })}
             </div>
-        :<></>
+        :
+        <div class="d-flex align-items-center">
+            <strong>Loading...</strong>
+            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        </div>}
+
+        </div>
+        
     )
 }

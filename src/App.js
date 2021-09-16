@@ -8,18 +8,26 @@ import {BrowserRouter,NavLink,Route,Switch,Redirect} from "react-router-dom"
 import Comments from './Components/Comments/Comments';
 import Newpost from './Components/NewPost/Newpost';
 
+function Authenicate({path:path,component:Component}){
+  return (
+    <Route
+      path={path}
+      render={()=>{
+        const user=window.localStorage.getItem("userLogin");
+        return user==="true" ? <Component /> :<Login />
+      }}
+    />
+  );
+}
 
-class App extends React.Component{
-  
-  render(){
+function App (){
     return (
       <BrowserRouter>
-      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/newpost" component={Newpost} />
-        <Route path="/post" component={SinglePost} />
-        <Route path="/comments" component={Comments} />
+        <Authenicate path="/newpost" component={Newpost} />
+        <Authenicate path="/post" component={SinglePost} />
+        <Authenicate path="/comments" component={Comments} />
         <Route path="/login" component={Login} />
         <Route path="/home">
           <Redirect path="/" />
@@ -28,5 +36,4 @@ class App extends React.Component{
       </BrowserRouter>
     );
   }
-}
 export default App;
