@@ -14,7 +14,7 @@ function Authenicate({path:path,component:Component}){
       path={path}
       render={()=>{
         const user=window.localStorage.getItem("userLogin");
-        return user==="true" ? <Component /> :<Login />
+        return user && user==="true" ? <Component /> :<Login />
       }}
     />
   );
