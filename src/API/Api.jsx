@@ -3,6 +3,8 @@ import axios from 'axios'
 
 const url="https://jsonplaceholder.typicode.com";
 
+
+//Fetching data for posts and Single post
 export const Api=async(id)=>{
     let changeableUrl;
     if(id){
@@ -16,6 +18,7 @@ export const Api=async(id)=>{
    return data;
 }
 
+//Fetching data of Users to display in single Page
 export const UserApi=async()=>{
     const userId=window.localStorage.getItem("userId");
     const fetchUserData= await axios.get(`${url}/users/${userId}`);
@@ -23,6 +26,7 @@ export const UserApi=async()=>{
     return data;
 }
 
+//Fetching data of comments for a post
 export const CommentApi=async()=>{
     try{
         const id=window.localStorage.getItem("postId");

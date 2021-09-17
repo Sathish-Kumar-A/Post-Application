@@ -1,13 +1,13 @@
 import React from 'react';
-import './App.css';
-import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import Login from './Components/LoginPage/Login';
 import SinglePost from "./Components/SinglePost/SinglePost";
-import {BrowserRouter,NavLink,Route,Switch,Redirect} from "react-router-dom"
+import {BrowserRouter,Route,Switch,Redirect} from "react-router-dom"
 import Comments from './Components/Comments/Comments';
 import Newpost from './Components/NewPost/Newpost';
 
+
+//Function to route to specific pages according to user present or not
 function Authenicate({path:path,component:Component}){
   return (
     <Route

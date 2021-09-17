@@ -1,5 +1,0 @@
-//     <div className="post" key={post.id}>
-//     <h3>{post.title}</h3>
-//     <hr />
-//     <p>{post.body}</p>
-// </div>

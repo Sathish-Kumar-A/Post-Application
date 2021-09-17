@@ -18,7 +18,7 @@ export default function Home() {
         setposts(res);
     },[]);
 
-
+    //Changing of colour and text in Upvote button
     const btnChange=(id)=>{
         if(posts[id].btn==="UpVote"){
            const res =posts.map((post,index)=>{
@@ -52,6 +52,7 @@ export default function Home() {
         }
     }
 
+    //Sorting according to upvotes
 
     function sort(posts){
         for(var x=1;x<posts.length;x++){
@@ -68,6 +69,7 @@ export default function Home() {
         }
     }
 
+    //Storing postId and UserId in local storage for Api fetching purpose
     const sendPostId=(id,userId)=>{
         window.localStorage.setItem("postId",id);
         window.localStorage.setItem("userId",userId);
@@ -104,7 +106,7 @@ export default function Home() {
                 })}
             </div>
         :
-        <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-center col-10 mx-5 my-5">
             <strong>Loading...</strong>
             <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
         </div>}

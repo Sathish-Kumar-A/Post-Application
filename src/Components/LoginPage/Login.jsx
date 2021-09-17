@@ -1,18 +1,20 @@
 import React,{useState} from 'react'
 import Header from '../Header/Header';
-import Home from '../Home/Home';
 import "./login.css";
 
+//Storing users in the array when user logined
 const users=[];
 var userChecker=false;
 
 export default function Login() {
     const[userName,setuserName]=useState("");
 
+    //event to set username 
     const handleChange=(event)=>{
         setuserName(event.target.value);
     }
 
+    //Storing users in users array
     const loginRegister=()=>{
         if(userName.length){
             if(users.length===0){
@@ -33,6 +35,8 @@ export default function Login() {
                 }
             }
         }
+
+        //Setting the username and userPresent values in local storage to ensure user is present or not
         window.localStorage.setItem("userLogin",userChecker);
         window.localStorage.setItem("userName",userName);
         setuserName("");

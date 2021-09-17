@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import "./header.css";
-import { NavLink,BrowserRouter,Route} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 
 export default function Header() {
@@ -9,6 +8,7 @@ export default function Header() {
     const [user,setuser]=useState("Login");
     const [userName,setuserName]=useState("")
     
+    //React hook to update login or logout and username in header section
     useEffect(()=>{
         if(userChecker=="true"){
             setuser("Logout");
@@ -20,6 +20,7 @@ export default function Header() {
         }
     },[userChecker]);
 
+    //when logout button was clicked userLogin is set to false 
    const loginChange=()=>{
         if(userChecker=="true"){
             window.localStorage.setItem("userLogin",false);
