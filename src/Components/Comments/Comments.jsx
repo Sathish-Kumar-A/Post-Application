@@ -61,7 +61,7 @@ export default function Comments() {
                             })}
 
                             <button className="btn btn-warning text-white text-center my-3" onClick={()=>setuser(true)}>Add Comment</button>
-                            
+                            <NavLink to="/"><button className="btn btn-secondary mx-3 my-3">Home</button></NavLink>
 
                             {user ? (
                                 <div className="d-flex justify-content-center">
