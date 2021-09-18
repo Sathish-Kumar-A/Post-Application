@@ -44,15 +44,22 @@ export default function Login() {
     
     return (
         <div>
-        <Header />
+        
+            <Header />
+
             <div className="loginBox ">
+
                 <div className="loginContainer">
-                <div className="mb-3 inputBox">
-                    <label for="exampleFormControlInput1" className="form-label loginLabel">Enter Username</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" value={userName} placeholder="eg.john Durai" onChange={(event)=>handleChange(event)} />
+
+                    <div className="mb-3 inputBox">
+                        <label for="exampleFormControlInput1" className="form-label loginLabel">Enter Username</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" value={userName} placeholder="eg.john Durai" onChange={(event)=>handleChange(event)} />
+                    </div>
+
+                    <button className="loginBtn btn btn-primary" onClick={()=>loginRegister()}>Login</button>
+
                 </div>
-                <button className="loginBtn btn btn-primary" onClick={()=>loginRegister()}>Login</button>
-                </div>
+
             </div>
         </div>
     

@@ -10,7 +10,7 @@ export default function Header() {
     
     //React hook to update login or logout and username in header section
     useEffect(()=>{
-        if(userChecker=="true"){
+        if(userChecker==="true"){
             setuser("Logout");
             setuserName(userNameGet);
         }
@@ -22,7 +22,7 @@ export default function Header() {
 
     //when logout button was clicked userLogin is set to false 
    const loginChange=()=>{
-        if(userChecker=="true"){
+        if(userChecker==="true"){
             window.localStorage.setItem("userLogin",false);
             
         }

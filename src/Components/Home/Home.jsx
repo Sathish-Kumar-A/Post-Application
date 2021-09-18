@@ -9,7 +9,7 @@ export default function Home() {
     const [posts,setposts]=useState([]);
     const user=window.localStorage.getItem("userLogin");
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //setting the posts data in state and added states of button, button color to every post data
     useEffect(async()=>{
         const fetchedData=await Api();
         var res=fetchedData.map((data)=>{
@@ -77,39 +77,42 @@ export default function Home() {
 
     return (
         <div>
-        <Header />
-        {posts.length ? 
+            <Header />
+            {posts.length ? 
 
-            <div className="posts">
-                {posts.map((post,index)=>{
-                    let time;
-                    if(index<24){
-                        time=index + " hours ago";
-                    }
-                    else if(index>24 && index<168){
-                        time=Math.floor(index/24) +" days ago"
-                    }
-                    return(
-                        <div className="card col-11 col-xs-11 col-sm-11 col-md-5 col-lg-3 cardBox" key={post.id}>
-                        <span class="badge bg-light text-dark">{time}</span>
-                            <div className="card-body">
-                                <h5 className="card-title" onClick={()=>sendPostId(post.id,post.userId)}><NavLink to="/post" style={{textDecoration:"none"}}>{post.title}</NavLink></h5>
-                                <p className="card-text">{post.body}</p>
-                                <span class="badge bg-info text-light">{post.count}</span>
-                                {user==="true" ? <button className={post.class} onClick={()=>btnChange(index)}>{post.btn}</button>:<span></span>}
-                                
-                                <NavLink to="/comments" className="btn btn-primary my-3 mx-2">View Comments</NavLink>
+                <div className="posts">
+                    {posts.map((post,index)=>{
+                        let time;
+                        if(index<24){
+                            time=index + " hours ago";
+                        }
+                        else if(index>24 && index<168){
+                            time=Math.floor(index/24) +" days ago"
+                        }
+                        return(
+                            <div className="card col-11 col-xs-11 col-sm-11 col-md-5 col-lg-3 cardBox" key={post.id}>
+
+                                <span class="badge bg-light text-dark">{time}</span>
+
+                                <div className="card-body">
+                                    <h5 className="card-title" onClick={()=>sendPostId(post.id,post.userId)}><NavLink to="/post" style={{textDecoration:"none"}}>{post.title}</NavLink></h5>
+                                    <p className="card-text">{post.body}</p>
+                                    <span class="badge bg-info text-light">{post.count}</span>
+                                    {user==="true" ? <button className={post.class} onClick={()=>btnChange(index)}>{post.btn}</button>:<span></span>}
+                                    
+                                    <NavLink to="/comments" className="btn btn-primary my-3 mx-2">View Comments</NavLink>
+                                </div>
+
                             </div>
-                        </div>
-                    
-                    );
-                })}
-            </div>
-        :
-        <div class="d-flex justify-content-center col-10 mx-5 my-5">
-            <strong>Loading...</strong>
-            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-        </div>}
+                        
+                        );
+                    })}
+                </div>
+            :
+            <div class="d-flex justify-content-center col-10 mx-5 my-5">
+                <strong>Loading...</strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>}
 
         </div>
         
