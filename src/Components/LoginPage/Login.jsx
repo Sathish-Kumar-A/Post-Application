@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Header from '../Header/Header';
 import "./login.css";
+import { NavLink } from 'react-router-dom';
 
 //Storing users in the array when user logined
 const users=[];
@@ -44,7 +45,7 @@ export default function Login() {
     
     return (
         <div>
-        
+
             <Header />
 
             <div className="loginBox ">
@@ -56,7 +57,12 @@ export default function Login() {
                         <input type="text" className="form-control" id="exampleFormControlInput1" value={userName} placeholder="eg.john Durai" onChange={(event)=>handleChange(event)} />
                     </div>
 
-                    <button className="loginBtn btn btn-primary" onClick={()=>loginRegister()}>Login</button>
+                    <div className="d-flex">
+                    
+                        <button className="loginBtn btn btn-primary mx-3 my-3" onClick={()=>loginRegister()}>Login</button>
+                        <NavLink to="/"><button className="btn btn-secondary mx-3 my-3">Home</button></NavLink>
+
+                    </div>
 
                 </div>
 
