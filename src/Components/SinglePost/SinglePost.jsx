@@ -49,7 +49,7 @@ export default function SinglePost() {
                 </div>
 
                 <hr className="container col-10"/>
-                
+
                 <Comments />
             </div>
 
